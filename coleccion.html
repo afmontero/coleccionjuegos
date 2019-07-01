@@ -1,0 +1,60 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<main role="main">
+
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading">Coleccion de juegos</h1>
+      <p class="lead text-muted">Hola {{username}}, esta es tu colección de juegos. Pulsa en el botón "Añadir Juego" para añadir un nuevo juego a tu colección. Pulsa el botón "Salir" para volver a la pantalla de Login.</p>
+      <p>
+        <a class="btn btn-primary my-2" href="/add">Añadir juego</a>
+        <a class="btn btn-secondary my-2" href="{{user_logout}}">Salir</a>
+      </p>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+		{% if not juegos.count() == 0: %}
+		<div class="row">
+		{% for juego in juegos%}
+		{% if user_id == propietarios[loop.index-1].id_user %}
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+			{% if juego.portada != None %}
+            <img class="bd-placeholder-img card-img-top" src="data:image/png;base64,{{juego.portada.encode('base64')}}">
+            {% else %}
+            <img class="bd-placeholder-img card-img-top" src="image/juego.jpg">
+            {% endif %}
+            <div class="card-body">
+              <p class="card-text">{{juego.titulo}}</p>
+			  <p class="card-text">{{juego.desarrolladora}}</p>
+			  <p class="card-text">{{juego.plataforma}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a href="/edit?id={{juego.key.id()}}" type="button" class="btn btn-sm btn-outline-secondary">Editar</a>
+				  <a href="/del?id={{juego.key.id()}}" type="button" class="btn btn-sm btn-outline-secondary">Borrar</a>
+                </div>
+                <small class="text-muted">                                        
+				{% if juego.nota %}
+					Nota: {{juego.nota}}
+                {% else %}
+					Sin calificar.
+                {% endif %}
+				</small>
+              </div>
+            </div>
+          </div>
+        </div>
+		{% endif %}
+		{% endfor %}
+	</div>
+	{% endif %}		
+  </div>
+  </div> 
+
+</main>
+
+{% endblock%}

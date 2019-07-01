@@ -1,0 +1,57 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<main role="main" class="container">
+<div class="jumbotron">
+<div class="title center">
+    <h2>Añadir juego</h2>
+</div>
+<div class="row">
+    <form class="col s12" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-sm-8">
+                <label for="titulo">Titulo</label>
+                <input required id="titulo" name="titulo" type="text" class="form-control">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <label for="plataforma">Plataforma</label>
+                <input id="plataforma" name="plataforma" type="text" class="form-control">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-8">
+                <label for="nota">Nota</label>
+                <input id="nota" name="nota" type="number" max="10" min="0" class="form-control">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-8">
+                <label for="desarrolladora">Desarrolladora</label>
+                <input id="desarrolladora" name="desarrolladora" type="text" class="form-control">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-8">
+                <label for="portada">Portada</label>
+                <input id="portada" name="portada" type="file" accept="image/*" class="form-control">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-8">
+                <button class="btn-flat amber darken-2 white-text" type="Submit" name="Submit">Añadir</button>
+            </div>
+        </div>
+    </form>
+</div>
+    </div>
+
+</main>
+
+{% endblock %}
